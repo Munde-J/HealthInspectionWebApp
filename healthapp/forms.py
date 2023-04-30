@@ -1,10 +1,10 @@
 from django import forms
-from .models import Currency, Customer, Notifications, Third_party
+from .models import Business_type, Violation, Compliance, Inspection,InspectionChecklist,FollowUp
 from django.forms import ModelForm
 from .models import Business_type
 from .models import Violation
 from .models import Compliance
-from .models import Inspect
+from .models import Inspection
 from .models import InspectionChecklist
 from .models import FollowUp
 
@@ -48,17 +48,17 @@ class ComplianceRegistrationForm(ModelForm):
 class InspectionChecklistRegistrationForm(ModelForm):
   class Meta:
         model=InspectionChecklist
-        fields=("business","cleanliness","protective_equipments","handwashing_equipments")
+        fields=("business","cleanliness","protective_equipment","handwashing_equipment")
         widgets={
           "business":forms.TextInput(attrs={'class':'form-control'}),
           "cleanliness":forms.TextInput(attrs={'class':'form-control'}),
-          "protective_equipments":forms.TextInput(attrs={'class':'form-control'}),
+          "protective_equipment":forms.TextInput(attrs={'class':'form-control'}),
           "handwashing_equipments":forms.TextInput(attrs={'class':'form-control'}),     
         }
 
-class InspectRegistrationForm(ModelForm):
+class InspectionRegistrationForm(ModelForm):
   class Meta:
-        model= Inspect
+        model= Inspection
         fields=("business","date_time","observations")
         widgets={
           "business":forms.TextInput(attrs={'class':'form-control'}),

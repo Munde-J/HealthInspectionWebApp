@@ -6,12 +6,12 @@ from bdb import effective
 from urllib.request import Request
 from django.shortcuts import render
 # import wallet
-from healthapp .models import healthapp
-from django import redirect
+from healthapp .models import models
+from django.shortcuts import redirect
 from .forms import FollowUpRegistrationForm, InspectionChecklistRegistrationForm
-from .models import Inspect, InspectionChecklist, Violation, Compliance, Business_type, FollowUp
+from .models import Inspection, InspectionChecklist, Violation, Compliance, FollowUp
 # from . import forms
-from .forms import InspectRegistrationForm
+from .forms import InspectionRegistrationForm
 from .forms import ViolationRegistrationForm
 from .forms import ComplianceRegistrationForm
 from .forms import Business_typeRegistrationForm
@@ -76,16 +76,15 @@ def violation_profile(request,id):
     violation = violation.objects.get(id = id)
     return render(request,"violation/violation_profile.html",{"violation":violation})
 
-def edit_violation(request,id):
-    violation = violation.objects.get(id=id)
+def edit_violation(request):
+    form = ViolationRegistrationForm()
     if request.method == "POST":
-        form = ViolationRegistrationForm(request.POST,instance=violation)
+        form = ViolationRegistrationForm(request.POST)
     if form.is_valid():
             form.save()
-            return redirect("violation_profile",id=violation.id)
     else:
-        form = ViolationRegistrationForm(instance=violation)
-        return render(request,"violation/violation.html",{"form":form})
+        form = ViolationRegistrationForm()
+        return render(request,"healthapp/edit_violation.html",{"form":form})
 
 
 
@@ -124,38 +123,38 @@ def edit_compliance(request,id):
 
 
 
-def register_inspect(request):
-    form = InspectRegistrationForm()
+def register_inspection(request):
+    form = InspectionRegistrationForm()
     if request.method == "POST":
-        form = InspectRegistrationForm(request.POST)
+        form = InspectionRegistrationForm(request.POST)
     if form.is_valid():
         form.save()
     else:
-        form = InspectRegistrationForm()
-        return render(request,"inspect/register_inspect.html",
+        form = InspectionRegistrationForm()
+        return render(request,"inspection/register_inspection.html",
         {"form":form})
 
-def list_inspect(request):
-    inspect = inspect.objects.all()
-    return inspect(request, "inspect/inspect_list.html",
-    {"inspect": inspect})       
+def list_inspection(request):
+    inspection = inspection.objects.all()
+    return inspection(request, "inspection/inspection_list.html",
+    {"inspection": inspection})       
     # return render(request,"wallet/register_wallet.html",
     # {"form":form})
 
-def inspect_profile(request,id):
-    inspect = inspect.objects.get(id = id)
-    return render(request,"inspect/inspect_profile.html",{"inspect":inspect})
+def inspection_profile(request,id):
+    inspection = inspection.objects.get(id = id)
+    return render(request,"inspection/inspection_profile.html",{"inspection":inspection})
 
-def edit_inspect(request,id):
-    inspect = inspect.objects.get(id=id)
+def edit_inspection(request,id):
+    inspection = inspection.objects.get(id=id)
     if request.method == "POST":
-        form = InspectRegistrationForm(request.POST,instance=inspect)
+        form = InspectionRegistrationForm(request.POST,instance=inspection)
     if form.is_valid():
             form.save()
-            return redirect("inspect_profile",id=inspect.id)
+            return redirect("inspect_profile",id=inspection.id)
     else:
-        form = InspectRegistrationForm(instance=inspect)
-        return render(request,"inspect/inspect.html",{"form":form})
+        form = InspectionRegistrationForm(instance=inspection)
+        return render(request,"inspection/inspection.html",{"form":form})
 
 
 def register_inspectionChecklist(request):

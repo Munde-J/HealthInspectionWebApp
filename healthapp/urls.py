@@ -1,10 +1,10 @@
 from django .urls import path
-from healthapp.models import Business_type
+# from healthapp.models import Business_type
 from .views import register_business_type
 from .views import register_violation
 from . import views
 from .views import register_compliance
-from .views import register_inspect
+from .views import register_inspection
 from .views import register_inspectionChecklist
 from .views import register_followUp
 
@@ -12,15 +12,17 @@ from .views import edit_compliance
 from .views import edit_business_type
 from .views import edit_followUp
 from .views import edit_violation
-from .views import edit_inspect
+from .views import edit_inspection
 from .views import edit_inspectionChecklist
 
 from .views import compliance_profile
 from .views import violation_profile
 from .views import inspectionChecklist_profile
-from .views import inspect_profile
+from .views import inspection_profile
 from .views import business_type_profile
 from .views import followUp_profile
+
+app_name = "healthapp"
 
 urlpatterns = [
     path("business_type/", register_business_type, name = "registration"),
@@ -33,10 +35,10 @@ urlpatterns = [
     path("followUp/edit/<int:id/",edit_followUp, name="edit_followUp"),
     path("followUp/<int:id>",followUp_profile,name="followUp_profile"),
 
-    path("inspect_type/", register_inspect, name = "registration"),
-    path("inspect/", views.list_inspect, name="inspect_list"),
-    path("inspect/edit/<int:id/",edit_inspect, name="edit_inspect"),
-    path("inspect_type/<int:id>",inspect_profile,name="inspect_profile"),
+    path("inspection_type/", register_inspection, name = "registration"),
+    path("inspection/", views.list_inspection, name="inspection_list"),
+    path("inspection/edit/<int:id/",edit_inspection, name="edit_inspection"),
+    path("inspection_type/<int:id>",inspection_profile,name="inspection_profile"),
 
     path("inspectionChecklist/", register_inspectionChecklist, name = "registration"),
     path("inspectionChecklist/", views.list_inspectionChecklist, name="inspectionChecklist_list"),
@@ -45,7 +47,7 @@ urlpatterns = [
 
     path("violation_type/", register_violation, name = "registration"),
     path("violation_type/", views.list_violation, name="violation_list"),
-    path("violation_type/edit/<int:id/",edit_violation, name="edit_violation"),
+    path("violation/",edit_violation, name="violation"),
     path("violation_type/<int:id>",violation_profile,name="violation_profile"),
 
     path("compliance_type/", register_compliance, name = "registration"),

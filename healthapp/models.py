@@ -8,7 +8,7 @@ class Business_type(models.Model):
     city = models.CharField(max_length=20)
     country = models.CharField(max_length=20)
    
-class Inspect(models.Model):
+class Inspection(models.Model):
     business = models.ForeignKey(Business_type, on_delete=models.CASCADE)
     date_time = models.DateTimeField()
     observations = models.TextField()

@@ -1,18 +1,20 @@
 from rest_framework import viewsets
 from rest_framework import serializers
-from.serializers import Business_typeSerializer
+
+from healthapp.models import Business_type, Compliance, FollowUp, Inspection, InspectionChecklist, Violation
+from.serializer import Business_typeSerializer, ComplianceSerializer, FollowUpSerializer, InspectSerializer, InspectionChecklistSerializer, ViolationSerializer
 
 
 
 class Business_typeViewSet(viewsets.ModelViewSet):
     queryset = Business_type.objects.all()
     serializer_class = Business_typeSerializer
-class InspectViewSet(viewsets.ModelViewSet):
-    queryset =Inspect.objects.all()
+class InspectionViewSet(viewsets.ModelViewSet):
+    queryset =Inspection.objects.all()
     serializer_class = InspectSerializer
 class InspectionChecklistViewSet(viewsets.ModelViewSet):
     queryset=InspectionChecklist.objects.all()
-    serializer_class= InspectionChecklistSerilaizers
+    serializer_class= InspectionChecklistSerializer
 class ViolationViewSet(viewsets.ModelViewSet):
     queryset=Violation.objects.all()
     serializer_class=ViolationSerializer
