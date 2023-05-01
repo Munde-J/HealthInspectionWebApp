@@ -25,7 +25,7 @@ from .views import followUp_profile
 app_name = "healthapp"
 
 urlpatterns = [
-    path("business_type/", register_business_type, name = "registration"),
+    path("business_type/", views.register_business_type, name = "registration"),
     path("business_type/", views.list_business_types, name="business_type_list"),
     path("business_type/edit/<int:id/",edit_business_type, name="edit_business_type"),
     path("business_type/<int:id>",business_type_profile,name="business_type_profile"), 

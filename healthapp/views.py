@@ -27,7 +27,7 @@ def register_business_type(request):
         form.save()
     else:
         form = Business_typeRegistrationForm()
-        return render(request,"business_type/register_business_type.html",
+        return render(request,"healthapp/health/templates/register_business_type.html",
         {"form":form})
 
 def list_business_types(request):
@@ -39,7 +39,7 @@ def list_business_types(request):
 
 def business_type_profile(request,id):
     business_type = business_type.objects.get(id = id)
-    return render(request,"business_type/business_type_profile.html",{"business_type":business_type})
+    return render(request,"templates/business_type_profilee.html",{"business_type":business_type})
 
 def edit_business_type(request,id):
     business_type = business_type.objects.get(id=id)
@@ -65,12 +65,12 @@ def register_violation(request):
         return render(request,"violation/register_violation.html",
         {"form":form})
 
+
 def list_violation(request):
     violation = violation.objects.all()
     return violation(request, "violation/violation_list.html",
     {"violation": violation})       
-    # return render(request,"wallet/register_wallet.html",
-    # {"form":form})
+    
 
 def violation_profile(request,id):
     violation = violation.objects.get(id = id)
@@ -85,6 +85,7 @@ def edit_violation(request):
     else:
         form = ViolationRegistrationForm()
         return render(request,"healthapp/edit_violation.html",{"form":form})
+    #  return render(request, 'healthapp/edit_violation.html', )
 
 
 
@@ -101,7 +102,7 @@ def register_compliance(request):
 
 def list_compliance(request):
     compliance = compliance.objects.all()
-    return compliance(request, "compliance/compliance_list.html",
+    return compliance(request, "health/compliance_list.html",
     {"compliance": compliance})       
     # return render(request,"wallet/register_wallet.html",
     # {"form":form})
